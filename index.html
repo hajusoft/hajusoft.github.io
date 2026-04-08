@@ -10,7 +10,10 @@
     <meta property="og:title" content="HAJU SOFT | Modern Software Solutions">
     <meta property="og:description" content="Innovative digital products and engineering services for modern businesses.">
     <meta property="og:image" content="hajusoft.png">
-    <meta property="og:type" content="website">
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="no-referrer-when-downgrade">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -238,9 +241,9 @@
                     Whether you have a specific project in mind or just want to explore possibilities, our engineering team is ready to talk.
                 </p>
                 <div class="flex flex-col items-center gap-6">
-                    <a href="mailto:hajusoft@outlook.com" class="text-3xl font-bold text-slate-900 hover:text-slate-700 transition-colors border-b-4 border-slate-200 hover:border-slate-900 pb-2">
-                        hajusoft@outlook.com
-                    </a>
+                    <div id="email-container" class="text-3xl font-bold text-slate-900 hover:text-slate-700 transition-colors border-b-4 border-slate-200 hover:border-slate-900 pb-2 cursor-pointer">
+                        <!-- Email will be injected by JS for security -->
+                    </div>
                     <p class="text-slate-400 text-sm">Based globally. Delivering excellence everywhere.</p>
                 </div>
             </div>
@@ -256,9 +259,9 @@
                     <span class="font-bold text-lg text-slate-900 uppercase tracking-widest">HAJU SOFT</span>
                 </div>
                 <div class="flex gap-8 text-sm font-medium text-slate-500">
-                    <a href="#" class="hover:text-slate-900">Privacy Policy</a>
-                    <a href="#" class="hover:text-slate-900">Terms of Service</a>
-                    <a href="#" class="hover:text-slate-900">LinkedIn</a>
+                    <a href="#" class="hover:text-slate-900 transition-colors" rel="noopener">Privacy Policy</a>
+                    <a href="#" class="hover:text-slate-900 transition-colors" rel="noopener">Terms of Service</a>
+                    <a href="https://linkedin.com" target="_blank" class="hover:text-slate-900 transition-colors" rel="noopener noreferrer">LinkedIn</a>
                 </div>
                 <p class="text-slate-400 text-sm">
                     &copy; 2026 HAJU SOFT. All rights reserved.
@@ -268,6 +271,21 @@
     </footer>
 
     <script>
+        // Email Obfuscation to prevent scrapers
+        (function() {
+            const user = "hajusoft";
+            const domain = "outlook.com";
+            const container = document.getElementById('email-container');
+            const email = `${user}@${domain}`;
+            
+            if (container) {
+                container.textContent = email;
+                container.addEventListener('click', () => {
+                    window.location.href = `mailto:${email}`;
+                });
+            }
+        })();
+
         // Mobile Menu Toggle Logic
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
